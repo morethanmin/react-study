@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import useInputs from '../hooks/useInputs'
+import useForm from '../hooks/use\bForm'
 import { validateSignUp } from '../libs/validate'
 
 const initialValues = {
@@ -12,9 +12,12 @@ const initialValues = {
 type Props = {}
 
 const IndexPage: React.FC<Props> = ({}) => {
-  const signUpInputs = useInputs({
+  const signUpInputs = useForm({
     initialValues: initialValues,
     validateFn: validateSignUp,
+    submitFn: () => {
+      console.log('submitted')
+    },
   })
 
   return (
@@ -41,7 +44,8 @@ const IndexPage: React.FC<Props> = ({}) => {
         value={signUpInputs.values.password}
         onChange={signUpInputs.handleChange}
       />
-      <button>제출하기</button>
+      {JSON.stringify(signUpInputs.errors)}
+      <button onClick={signUpInputs.handleSubmit}>제출하기</button>
     </StyledWrapper>
   )
 }
