@@ -3,11 +3,12 @@ import ProductsPage from '../pages/products'
 import IdPage from '../pages/products/[id]'
 
 export const routes = [
+  // todo: 리듀서로 crud
   {
     path: '/',
     element: <IndexPage />,
   },
-  // todo: 리듀서로 비동기 처리
+  // todo: 리듀서로 비동기 crud
   {
     path: '/reducer',
     element: <IndexPage />,

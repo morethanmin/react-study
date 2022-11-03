@@ -4,9 +4,8 @@ import useForm from '../hooks/use\bForm'
 import { validateSignUp } from '../libs/validate'
 
 const initialValues = {
-  email: '',
-  name: '',
-  password: '',
+  title: '',
+  description: '',
 }
 
 type Props = {}
@@ -22,26 +21,19 @@ const IndexPage: React.FC<Props> = ({}) => {
 
   return (
     <StyledWrapper>
-      <div>회원가입</div>
+      <div>투두리스트</div>
       <input
         type="text"
-        placeholder="이메일"
-        name="email"
-        value={signUpInputs.values.email}
+        placeholder="제목"
+        name="title"
+        value={signUpInputs.values.title}
         onChange={signUpInputs.handleChange}
       />
       <input
         type="text"
-        placeholder="이름"
-        name="name"
-        value={signUpInputs.values.name}
-        onChange={signUpInputs.handleChange}
-      />
-      <input
-        type="password"
-        placeholder="비밀번호"
-        name="password"
-        value={signUpInputs.values.password}
+        placeholder="내용"
+        name="description"
+        value={signUpInputs.values.description}
         onChange={signUpInputs.handleChange}
       />
       {JSON.stringify(signUpInputs.errors)}
