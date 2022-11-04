@@ -1,17 +1,10 @@
 import { Reducer, useReducer } from 'react'
-import { todoListType } from '../../types'
+import { TodoReducerActionType, TodoListType } from '../types'
 
-type reducerActionType =
-  | {
-      type: 'CREATE_TODO'
-      payload: todoListType
-    }
-  | {
-      type: 'DELETE_TODO'
-      payload: number
-    }
-
-const reducer: Reducer<todoListType[], reducerActionType> = (state, action) => {
+const reducer: Reducer<TodoListType[], TodoReducerActionType> = (
+  state,
+  action
+) => {
   switch (action.type) {
     case 'CREATE_TODO':
       return state.concat(action.payload)
@@ -24,8 +17,8 @@ const reducer: Reducer<todoListType[], reducerActionType> = (state, action) => {
 }
 
 type useTodolistReducerType = () => [
-  todoListType[],
-  React.Dispatch<reducerActionType>
+  TodoListType[],
+  React.Dispatch<TodoReducerActionType>
 ]
 
 const useTodolistReducer: useTodolistReducerType = () => {

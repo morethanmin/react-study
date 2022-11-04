@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import TodoItem from '../../components/todolist/TodoItem'
 import useForm from '../../hooks/useForm'
 import { validateTodolist } from '../../libs/validate'
-import { handleDeleteBtnType, todoListType } from '../../types'
+import { HandleDeleteBtnType, TodoListType } from '../../types'
 
 const initialValues = {
   title: '',
@@ -13,10 +13,10 @@ const initialValues = {
 type Props = {}
 
 const TodolistPage: React.FC<Props> = ({}) => {
-  const [data, setData] = useState<todoListType[]>([])
+  const [data, setData] = useState<TodoListType[]>([])
   const nextId = useRef(0)
 
-  const createTodo = (data: todoListType) => {
+  const createTodo = (data: TodoListType) => {
     setData((prevData) => prevData.concat(data))
   }
   const deleteTodo = (id: number) => {
@@ -34,7 +34,7 @@ const TodolistPage: React.FC<Props> = ({}) => {
     todoListForm.resetValues()
   }
 
-  const handleDeleteBtn: handleDeleteBtnType = (id) => {
+  const handleDeleteBtn: HandleDeleteBtnType = (id) => {
     deleteTodo(id)
   }
 
@@ -47,7 +47,7 @@ const TodolistPage: React.FC<Props> = ({}) => {
   return (
     <StyledWrapper>
       <div className="todolist-form">
-        <div>투두리스트</div>
+        <div>useState 투두리스트</div>
         <input
           type="text"
           placeholder="제목"

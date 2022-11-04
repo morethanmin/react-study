@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { handleDeleteBtnType, todoListType } from '../../types'
+import { HandleDeleteBtnType, TodoListType } from '../../types'
 
 type Props = {
-  data: todoListType
-  onDeleteBtn: handleDeleteBtnType
+  data: TodoListType
+  onDeleteBtn: HandleDeleteBtnType
 }
 
 const TodoItem: React.FC<Props> = ({ data, onDeleteBtn }) => {

@@ -1,10 +1,14 @@
 import styled from '@emotion/styled'
-import React, { useRef } from 'react'
+import React from 'react'
 import TodoItem from '../../components/todolist/TodoItem'
+import {
+  useTodoDispatch,
+  useTodoNextId,
+  useTodoState,
+} from '../../contexts/todolist'
 import useForm from '../../hooks/useForm'
 import { validateTodolist } from '../../libs/validate'
 import { HandleDeleteBtnType, TodoListType } from '../../types'
-import useTodolistReducer from '../../hooks/useTodoReducer'
 
 const initialValues = {
   title: '',
@@ -13,9 +17,10 @@ const initialValues = {
 
 type Props = {}
 
-const ReducerPage: React.FC<Props> = ({}) => {
-  const [data, dispatch] = useTodolistReducer()
-  const nextId = useRef(0)
+const ContextPage: React.FC<Props> = ({}) => {
+  const data = useTodoState()
+  const dispatch = useTodoDispatch()
+  const nextId = useTodoNextId()
 
   const createTodo = (data: TodoListType) => {
     dispatch({
@@ -29,6 +34,7 @@ const ReducerPage: React.FC<Props> = ({}) => {
       payload: id,
     })
   }
+
   const handleSubmit = () => {
     createTodo({
       id: nextId.current,
@@ -39,9 +45,11 @@ const ReducerPage: React.FC<Props> = ({}) => {
     nextId.current += 1
     todoListForm.resetValues()
   }
+
   const handleDeleteBtn: HandleDeleteBtnType = (id) => {
     deleteTodo(id)
   }
+
   const todoListForm = useForm({
     initialValues: initialValues,
     validateFn: validateTodolist,
@@ -51,7 +59,7 @@ const ReducerPage: React.FC<Props> = ({}) => {
   return (
     <StyledWrapper>
       <div className="todolist-form">
-        <div>useReducer 투두리스트</div>
+        <div>useContext 투두리스트</div>
         <input
           type="text"
           placeholder="제목"
@@ -78,7 +86,7 @@ const ReducerPage: React.FC<Props> = ({}) => {
   )
 }
 
-export default ReducerPage
+export default ContextPage
 
 const StyledWrapper = styled.div`
   display: flex;

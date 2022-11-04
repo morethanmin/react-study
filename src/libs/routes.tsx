@@ -2,6 +2,7 @@ import IndexPage from '../pages'
 import ProductsPage from '../pages/products'
 import IdPage from '../pages/products/[id]'
 import TodolistPage from '../pages/todolist'
+import ContextPage from '../pages/todolist/\bcontext'
 import ReducerPage from '../pages/todolist/reducer'
 
 /**
@@ -24,7 +25,7 @@ export const routes = [
   // todo: useContext로 상태관리
   {
     path: '/todolist/context',
-    element: <TodolistPage />,
+    element: <ContextPage />,
   },
   // todo: recoil로 상태관리
   {
