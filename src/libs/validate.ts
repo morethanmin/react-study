@@ -1,4 +1,4 @@
-export const validateSignUp = (values: { [key: string]: string }) => {
+export const validateTodolist = (values: { [key: string]: string }) => {
   // init errors object
   const errors: {
     [key: string]: string

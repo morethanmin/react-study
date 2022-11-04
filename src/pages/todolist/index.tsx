@@ -1,7 +1,9 @@
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import TodoItem from '../../components/todolist/TodoItem'
 import useForm from '../../hooks/useForm'
-import { validateSignUp } from '../../libs/validate'
+import { validateTodolist } from '../../libs/validate'
+import { handleDeleteBtnType, todoListType } from '../../types'
 
 const initialValues = {
   title: '',
@@ -11,12 +13,35 @@ const initialValues = {
 type Props = {}
 
 const TodolistPage: React.FC<Props> = ({}) => {
+  const [data, setData] = useState<todoListType[]>([])
+  const nextId = useRef(0)
+
+  const createTodo = (data: todoListType) => {
+    setData((prevData) => prevData.concat(data))
+  }
+  const deleteTodo = (id: number) => {
+    setData((prevData) => prevData.filter((todo) => todo.id !== id))
+  }
+
+  const handleSubmit = () => {
+    createTodo({
+      id: nextId.current,
+      title: todoListForm.values.title,
+      description: todoListForm.values.description,
+      done: false,
+    })
+    nextId.current += 1
+    todoListForm.resetValues()
+  }
+
+  const handleDeleteBtn: handleDeleteBtnType = (id) => {
+    deleteTodo(id)
+  }
+
   const todoListForm = useForm({
     initialValues: initialValues,
-    validateFn: validateSignUp,
-    submitFn: () => {
-      console.log('submitted')
-    },
+    validateFn: validateTodolist,
+    submitFn: handleSubmit,
   })
 
   return (
@@ -40,7 +65,11 @@ const TodolistPage: React.FC<Props> = ({}) => {
         {JSON.stringify(todoListForm.errors)}
         <button onClick={todoListForm.handleSubmit}>제출하기</button>
       </div>
-      <div className="todolist">ff</div>
+      <div className="todolist">
+        {data.map((todo, idx) => (
+          <TodoItem key={idx} data={todo} onDeleteBtn={handleDeleteBtn} />
+        ))}
+      </div>
     </StyledWrapper>
   )
 }
@@ -56,5 +85,10 @@ const StyledWrapper = styled.div`
     flex-direction: column;
     gap: 5px;
     width: 300px;
+  }
+  .todolist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 `
