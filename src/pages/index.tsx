@@ -1,43 +1,29 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import useForm from '../hooks/use\bForm'
-import { validateSignUp } from '../libs/validate'
-
-const initialValues = {
-  title: '',
-  description: '',
-}
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
 const IndexPage: React.FC<Props> = ({}) => {
-  const signUpInputs = useForm({
-    initialValues: initialValues,
-    validateFn: validateSignUp,
-    submitFn: () => {
-      console.log('submitted')
-    },
-  })
-
   return (
     <StyledWrapper>
-      <div>투두리스트</div>
-      <input
-        type="text"
-        placeholder="제목"
-        name="title"
-        value={signUpInputs.values.title}
-        onChange={signUpInputs.handleChange}
-      />
-      <input
-        type="text"
-        placeholder="내용"
-        name="description"
-        value={signUpInputs.values.description}
-        onChange={signUpInputs.handleChange}
-      />
-      {JSON.stringify(signUpInputs.errors)}
-      <button onClick={signUpInputs.handleSubmit}>제출하기</button>
+      <ul>
+        <li>
+          <Link to={'/todolist'}>todolist(useState)</Link>
+        </li>
+        <li>
+          <Link to={'/todolist/reducer'}>todolist(useReducer)</Link>
+        </li>
+        <li>
+          <Link to={'/todolist/context'}>todolist(useContext)</Link>
+        </li>
+        <li>
+          <Link to={'/todolist/recoil'}>todolist(recoil)</Link>
+        </li>
+        <li>
+          <Link to={'/products'}>products</Link>
+        </li>
+      </ul>
     </StyledWrapper>
   )
 }
@@ -47,6 +33,11 @@ export default IndexPage
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  width: 300px;
+  gap: 20px;
+  .todolist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+  }
 `

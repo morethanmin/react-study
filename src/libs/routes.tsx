@@ -1,22 +1,36 @@
 import IndexPage from '../pages'
 import ProductsPage from '../pages/products'
 import IdPage from '../pages/products/[id]'
+import TodolistPage from '../pages/todolist'
 
+/**
+ * useState, useReducer, useContext, rocil, reactQuery, suspense, errorboundary
+ */
 export const routes = [
   // todo: 리듀서로 crud
   {
     path: '/',
     element: <IndexPage />,
   },
-  // todo: 리듀서로 비동기 crud
+  // todo: useState로 상태관리
   {
-    path: '/reducer',
-    element: <IndexPage />,
+    path: '/todolist',
+    element: <TodolistPage />,
   },
-  // todo: 비동기 처리하는데, 서스펜스 넣어서 로딩처리
+  // todo: useReducer로 상태관리
   {
-    path: '/suspense',
-    element: <IndexPage />,
+    path: '/todolist/reducer',
+    element: <TodolistPage />,
+  },
+  // todo: useContext로 상태관리
+  {
+    path: '/todolist/context',
+    element: <TodolistPage />,
+  },
+  // todo: recoil로 상태관리
+  {
+    path: '/todolist/recoil',
+    element: <TodolistPage />,
   },
   // todo: 리코일로 투두리스트 만들기.
   {
