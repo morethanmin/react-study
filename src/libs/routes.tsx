@@ -3,6 +3,7 @@ import ProductsPage from '../pages/products'
 import IdPage from '../pages/products/[id]'
 import TodolistPage from '../pages/todolist'
 import ContextPage from '../pages/todolist/\bcontext'
+import RecoilPage from '../pages/todolist/recoil'
 import ReducerPage from '../pages/todolist/reducer'
 
 /**
@@ -17,12 +18,10 @@ export const routes = [
     path: '/todolist',
     element: <TodolistPage />,
   },
-  // todo: useReducer로 상태관리
   {
     path: '/todolist/reducer',
     element: <ReducerPage />,
   },
-  // todo: useContext로 상태관리
   {
     path: '/todolist/context',
     element: <ContextPage />,
@@ -30,7 +29,7 @@ export const routes = [
   // todo: recoil로 상태관리
   {
     path: '/todolist/recoil',
-    element: <TodolistPage />,
+    element: <RecoilPage />,
   },
   // todo: react query로 비동기처리하는 리스트
   {
