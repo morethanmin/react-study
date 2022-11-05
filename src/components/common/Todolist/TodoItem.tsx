@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { HandleDeleteBtnType, TodoListType } from '../../types'
+import { HandleDeleteBtnType, TodoListType } from '../../../types'
 
 type Props = {
   data: TodoListType

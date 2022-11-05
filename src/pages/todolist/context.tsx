@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import TodoItem from '../../components/todolist/TodoItem'
+import TodoItem from '../../components/common/Todolist/TodoItem'
 import {
   useTodoDispatch,
   useTodoNextId,

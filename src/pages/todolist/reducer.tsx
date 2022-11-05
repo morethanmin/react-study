@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React, { useRef } from 'react'
-import TodoItem from '../../components/todolist/TodoItem'
+import TodoItem from '../../components/common/Todolist/TodoItem'
 import useForm from '../../hooks/useForm'
 import { validateTodolist } from '../../libs/validate'
 import { HandleDeleteBtnType, TodoListType } from '../../types'

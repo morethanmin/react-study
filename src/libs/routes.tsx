@@ -1,3 +1,4 @@
+import { RouteObject } from 'react-router-dom'
 import IndexPage from '../pages'
 import ProductsPage from '../pages/products'
 import IdPage from '../pages/products/[id]'
@@ -9,7 +10,7 @@ import ReducerPage from '../pages/todolist/reducer'
 /**
  * useState, useReducer, useContext, rocil, reactQuery, suspense, errorboundary
  */
-export const routes = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <IndexPage />,
@@ -38,10 +39,12 @@ export const routes = [
   },
   {
     path: '/products/:id',
+    errorElement: <>잘못된 상품아이디인듯?</>,
     element: <IdPage />,
   },
   {
     path: '*',
+    errorElement: <>omg error omg</>,
     element: <>not found</>,
   },
 ]

@@ -1,12 +1,8 @@
-import styled from '@emotion/styled'
-import React from 'react'
+import React, { Suspense } from 'react'
+import ProductsPage from '../../components/products'
 
-type Props = {}
-
-const ProductsPage: React.FC<Props> = ({}) => {
-  return <StyledWrapper>ProductsPage</StyledWrapper>
+const Products: React.FC = () => {
+  return <ProductsPage />
 }
 
-export default ProductsPage
-
-const StyledWrapper = styled.div``
+export default Products
