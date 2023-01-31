@@ -6,7 +6,7 @@ import { getProducts } from '../../libs/api'
 
 type Props = {}
 
-const View: React.FC<Props> = ({}) => {
+const ProductListView: React.FC<Props> = ({}) => {
   const { data } = useQuery(['products'], getProducts)
   return (
     <StyledWrapper>
@@ -22,6 +22,6 @@ const View: React.FC<Props> = ({}) => {
   )
 }
 
-export default View
+export default ProductListView
 
 const StyledWrapper = styled.div``

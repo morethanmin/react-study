@@ -1,16 +1,16 @@
 import { RouteObject } from 'react-router-dom'
-import IndexPage from '../pages'
-import ProductsPage from '../pages/products'
-import IdPage from '../pages/products/[id]'
-import TodolistPage from '../pages/todolist'
-import ContextPage from '../pages/todolist/context'
-import RecoilPage from '../pages/todolist/recoil'
-import ReducerPage from '../pages/todolist/reducer'
+import IndexPage from './Feed'
+import ProductsPage from './ProductList'
+import IdPage from './ProductDetail'
+import TodolistPage from './todolists'
+import ContextPage from './todolists/context'
+import RecoilPage from './todolists/recoil'
+import ReducerPage from './todolists/reducer'
 
 /**
  * useState, useReducer, useContext, rocil, reactQuery, suspense, errorboundary
  */
-export const routes: RouteObject[] = [
+export const routeObjects: RouteObject[] = [
   {
     path: '/',
     element: <IndexPage />,

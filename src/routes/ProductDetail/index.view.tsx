@@ -2,11 +2,11 @@ import styled from '@emotion/styled'
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { getProductById } from '../../../libs/api'
+import { getProductById } from '../../libs/api'
 
 type Props = {}
 
-const View: React.FC<Props> = ({}) => {
+const ProductsDetailView: React.FC<Props> = ({}) => {
   const params = useParams()
   const { data } = useQuery(['product', params.id], () =>
     getProductById(params.id!)
@@ -22,6 +22,6 @@ const View: React.FC<Props> = ({}) => {
   )
 }
 
-export default View
+export default ProductsDetailView
 
 const StyledWrapper = styled.div``

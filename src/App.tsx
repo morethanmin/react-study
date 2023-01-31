@@ -3,14 +3,14 @@ import { Global } from '@emotion/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { globalStyles } from './styles/globals'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { routes } from './libs/routes'
+import { routeObjects } from './routes'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RecoilRoot } from 'recoil'
 import queryClient from './libs/queryClient'
 import TodolistContext from './contexts/todolist'
 
 const App: React.FC = () => {
-  const router = createBrowserRouter(routes)
+  const router = createBrowserRouter(routeObjects)
   return (
     <>
       <TodolistContext>

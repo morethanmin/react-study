@@ -1,10 +1,19 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 type Props = {}
 
-const IndexPage: React.FC<Props> = ({}) => {
+const Feed: React.FC<Props> = ({}) => {
+  // * router.push
+  const navigate = useNavigate()
+
+  // * router.query (ex. products/:id)
+  const { id } = useParams()
+
+  // * router.query (ex. products?id=10)
+  const [searchParams, setSearchParams] = useSearchParams()
+
   return (
     <StyledWrapper>
       <ul>
@@ -28,7 +37,7 @@ const IndexPage: React.FC<Props> = ({}) => {
   )
 }
 
-export default IndexPage
+export default Feed
 
 const StyledWrapper = styled.div`
   display: flex;

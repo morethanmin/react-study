@@ -1,10 +1,9 @@
 import styled from '@emotion/styled'
-import React, { useRef } from 'react'
-import TodoItem from '../../components/common/Todolist/TodoItem'
+import React, { useRef, useState } from 'react'
+import TodoItem from '../../components/Todolist/TodoItem'
 import useForm from '../../hooks/useForm'
 import { validateTodolist } from '../../libs/validate'
 import { HandleDeleteBtnType, TodoListType } from '../../types'
-import useTodolistReducer from '../../hooks/useTodoReducer'
 
 const initialValues = {
   title: '',
@@ -13,22 +12,17 @@ const initialValues = {
 
 type Props = {}
 
-const ReducerPage: React.FC<Props> = ({}) => {
-  const [data, dispatch] = useTodolistReducer()
+const TodolistPage: React.FC<Props> = ({}) => {
+  const [data, setData] = useState<TodoListType[]>([])
   const nextId = useRef(0)
 
   const createTodo = (data: TodoListType) => {
-    dispatch({
-      type: 'CREATE_TODO',
-      payload: data,
-    })
+    setData((prevData) => prevData.concat(data))
   }
   const deleteTodo = (id: number) => {
-    dispatch({
-      type: 'DELETE_TODO',
-      payload: id,
-    })
+    setData((prevData) => prevData.filter((todo) => todo.id !== id))
   }
+
   const handleSubmit = () => {
     createTodo({
       id: nextId.current,
@@ -39,9 +33,11 @@ const ReducerPage: React.FC<Props> = ({}) => {
     nextId.current += 1
     todoListForm.resetValues()
   }
+
   const handleDeleteBtn: HandleDeleteBtnType = (id) => {
     deleteTodo(id)
   }
+
   const todoListForm = useForm({
     initialValues: initialValues,
     validateFn: validateTodolist,
@@ -51,7 +47,7 @@ const ReducerPage: React.FC<Props> = ({}) => {
   return (
     <StyledWrapper>
       <div className="todolist-form">
-        <div>useReducer 투두리스트</div>
+        <div>useState 투두리스트</div>
         <input
           type="text"
           placeholder="제목"
@@ -78,7 +74,7 @@ const ReducerPage: React.FC<Props> = ({}) => {
   )
 }
 
-export default ReducerPage
+export default TodolistPage
 
 const StyledWrapper = styled.div`
   display: flex;

@@ -1,11 +1,8 @@
 import styled from '@emotion/styled'
-import React from 'react'
-import TodoItem from '../../components/common/Todolist/TodoItem'
-import {
-  useTodoDispatch,
-  useTodoNextId,
-  useTodoState,
-} from '../../contexts/todolist'
+import React, { useRef, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { todolistState } from '../../atoms/todolist'
+import TodoItem from '../../components/Todolist/TodoItem'
 import useForm from '../../hooks/useForm'
 import { validateTodolist } from '../../libs/validate'
 import { HandleDeleteBtnType, TodoListType } from '../../types'
@@ -17,22 +14,15 @@ const initialValues = {
 
 type Props = {}
 
-const ContextPage: React.FC<Props> = ({}) => {
-  const data = useTodoState()
-  const dispatch = useTodoDispatch()
-  const nextId = useTodoNextId()
+const RecoilPage: React.FC<Props> = ({}) => {
+  const [data, setData] = useRecoilState(todolistState)
+  const nextId = useRef(0)
 
   const createTodo = (data: TodoListType) => {
-    dispatch({
-      type: 'CREATE_TODO',
-      payload: data,
-    })
+    setData((prevData) => prevData.concat(data))
   }
   const deleteTodo = (id: number) => {
-    dispatch({
-      type: 'DELETE_TODO',
-      payload: id,
-    })
+    setData((prevData) => prevData.filter((todo) => todo.id !== id))
   }
 
   const handleSubmit = () => {
@@ -59,7 +49,7 @@ const ContextPage: React.FC<Props> = ({}) => {
   return (
     <StyledWrapper>
       <div className="todolist-form">
-        <div>useContext 투두리스트</div>
+        <div>useState 투두리스트</div>
         <input
           type="text"
           placeholder="제목"
@@ -86,7 +76,7 @@ const ContextPage: React.FC<Props> = ({}) => {
   )
 }
 
-export default ContextPage
+export default RecoilPage
 
 const StyledWrapper = styled.div`
   display: flex;
